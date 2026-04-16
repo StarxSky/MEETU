@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.E.E.T.U Journal: The world may go wrong, but we are kindred spirits.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "paper": "#F9F9F9",
+                        "charcoal": "#333333",
+                        "charcoal-light": "#555555",
+                        "accent-gold": "#C5A02F",
+                        "border-light": "#E0E0E0",
+                        "science-red": "#D12F2F",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "sans-serif"],
+                        serif: ["'Playfair Display'", "serif"],
+                        chineseSerif: ["'Noto Serif SC'", "serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #F9F9F9;
+        }
+        .chinese-serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-slideIn {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Top Utility Bar -->
+    <div class="w-full bg-white border-b border-gray-200 py-1.5 px-4 lg:px-8 flex justify-end items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+        <a href="#" class="hover:text-science-red transition-colors cursor-pointer">Log In<span class="hidden sm:inline"> / 登录</span></a>
+        <a href="#" class="hover:text-science-red transition-colors cursor-pointer">Register<span class="hidden sm:inline"> / 注册</span></a>
+        <a href="#" class="hover:text-science-red transition-colors cursor-pointer">Subscribe<span class="hidden sm:inline"> / 订阅</span></a>
+    </div>
+
+    <!-- Main Header -->
+    <header class="w-full bg-white pt-6 pb-6 border-b-2 border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between">
+            <div class="flex md:hidden items-center gap-2 cursor-pointer" onclick="toggleMenu()">
+                <span class="material-symbols-outlined text-charcoal text-2xl">menu</span>
+            </div>
+            <div class="hidden md:flex items-center gap-2 w-1/4 cursor-pointer" onclick="toggleMenu()">
+                <span class="material-symbols-outlined text-charcoal text-2xl">menu</span>
+                <span class="text-xs font-bold uppercase tracking-widest">Menu / 菜单</span>
+            </div>
+
+            <div class="flex items-center justify-center gap-1 sm:gap-2">
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-serif font-black tracking-tighter text-charcoal leading-none">MeetU</h1>
+                <div class="flex flex-col justify-between self-stretch text-charcoal pt-[10px] pb-[6px] sm:pt-[15px] sm:pb-[9px] lg:pt-[18px] lg:pb-[12px]">
+                    <span class="text-[6px] sm:text-[9px] lg:text-[11px] font-black tracking-wide leading-none">Sciences</span>
+                    <span class="text-[6px] sm:text-[9px] lg:text-[11px] font-black tracking-wide leading-none">Humanities</span>
+                    <span class="text-[6px] sm:text-[9px] lg:text-[11px] font-black tracking-wide leading-none">Information</span>
+                    <span class="text-[6px] sm:text-[9px] lg:text-[11px] font-black tracking-wide leading-none">Technology</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-4">
+                <span class="material-symbols-outlined text-charcoal text-2xl cursor-pointer">search</span>
+                <a class="px-5 py-2.5 bg-science-red text-white text-[10px] font-bold uppercase tracking-widest rounded-sm hover:bg-red-700 transition-colors hidden sm:block whitespace-nowrap" href="#">
+                    Become a Kinfolk / 加入同味相吸者
+                </a>
+                <a class="px-4 py-2 border border-charcoal text-[10px] font-bold uppercase tracking-widest hover:bg-charcoal hover:text-white transition-all hidden sm:block whitespace-nowrap" href="#">
+                    Log In / 登录
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Secondary Nav -->
+    <div class="hidden md:block w-full bg-[#F2F2F2] border-b border-gray-300">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-2.5 flex flex-wrap justify-center gap-y-1">
+            <a href="#" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Home / 主页</a>
+            <a href="#news" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">News / 新闻</a>
+                        <a href="#preprints" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Aging / 陈酿区</a>
+                        <a href="#submit" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Lay / 下蛋</a>
+            <a href="#" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Dashboard / 仪表台</a>
+            <a href="#" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Fermentor / 发酵师</a>
+            <a href="#" class="px-3 border-r border-gray-300 last:border-r-0 text-[11px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors whitespace-nowrap">Journals / 子刊</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 lg:px-8 pb-24 w-full">
+        <!-- News Banner -->
+        <a href="#news" class="block bg-charcoal text-white px-4 sm:px-6 py-3 mb-6 -mx-4 lg:-mx-8 hover:bg-black transition-colors group">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <span class="shrink-0 text-[9px] font-bold uppercase tracking-widest bg-science-red px-2 py-0.5">NEW</span>
+                    <span class="text-sm font-serif truncate">投稿通道等暂时关闭，评论功能维护中，其他功能页面在持续开发中</span>
+                </div>
+                <span class="material-symbols-outlined text-sm shrink-0 text-gray-400 group-hover:text-accent-gold transition-colors">arrow_forward</span>
+            </div>
+        </a>
+
+        <!-- Hero Quote -->
+        <div class="py-8 sm:py-16 text-center max-w-4xl mx-auto px-4 relative">
+            <div class="w-full h-[1px] bg-gray-200 mb-8 sm:mb-12"></div>
+            <div class="absolute top-[0.5rem] sm:top-[1.5rem] left-1/2 -translate-x-1/2 bg-paper px-6 z-10">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-accent-gold rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl sm:text-2xl">知.音</span>
+                </div>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-charcoal leading-tight">
+                "The world may go wrong, but we are kindred spirits."
+            </h2>
+            <p class="mt-4 chinese-serif text-2xl text-charcoal-light font-medium tracking-wide">
+                "世界也许会出错，但你我臭味相投。"
+            </p>
+            <div class="w-full h-[1px] bg-gray-200 mt-6 sm:mt-12"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+            <div class="lg:col-span-8">
+                <!-- Editorial Section -->
+                <section class="mb-8 sm:mb-16">
+                    <div class="flex justify-between items-end border-b-4 border-charcoal pb-2 mb-8">
+                        <h3 class="text-3xl font-serif font-black uppercase tracking-tight text-charcoal">
+                            Editorial / 社论
+                        </h3>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Vol 1. Issue 1</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=450&fit=crop" alt="Editorial Feature" class="w-full aspect-[4/3] object-cover grayscale contrast-125 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105">
+                            <div class="absolute bottom-0 left-0 bg-white/95 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider border-t border-r border-gray-300">
+                                学术自由在 500 倍显微镜下的样子 / Academic freedom under a 500x microscope
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col h-full">
+                            <h4 class="text-3xl sm:text-4xl font-serif font-bold leading-tight mb-2 hover:text-accent-gold transition-colors cursor-pointer">
+                                A Manifesto for Academic Decentralization
+                            </h4>
+                            <h5 class="text-xl sm:text-2xl chinese-serif font-bold text-gray-500 mb-6">学术去中心化宣言</h5>
+                            <p class="font-serif text-lg text-gray-700 leading-relaxed mb-4 italic">
+                                《MeetU》是一场社会实验。我们试图回答一个问题：如果把编辑部的权力交还给社区，学术评价会变得更好还是更糟？
+                            </p>
+                            <p class="font-serif text-base text-gray-600 leading-relaxed mb-6">
+                                在这里，没有大佬，没有学阀。每一篇稿件从璞玉开始盲评，评分达标后晋升琥珀，最终凝结为化石。好的思想会自己浮上来，坏的自然沉底。
+                            </p>
+                            <a href="#news" class="inline-flex items-center gap-1 text-sm font-bold text-accent-gold hover:text-charcoal transition-colors">
+                                想参与社区自治？提交你的方案
+                                <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Septic Tank Promo -->
+                <section class="mb-12 bg-charcoal text-white p-8 sm:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-3xl font-serif font-bold mb-4">
+                                The Amber System / 琥珀系统
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                我们的革命性分级发表系统。稿件从"璞玉"开始，经过社区评审，晋升至"琥珀"陈酿，最终凝结为永久的"化石"永久保存。
+                            </p>
+                            <a href="#submit" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-gold text-charcoal font-bold text-sm uppercase tracking-wider hover:bg-yellow-500 transition-colors">
+                                Start Your Journey / 开始你的旅程
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="bg-white/10 p-4">
+                                <div class="text-3xl font-bold text-accent-gold mb-2">💎</div>
+                                <div class="text-xs uppercase tracking-widest mb-1">Raw Jade</div>
+                                <div class="text-[10px] text-gray-400 chinese-serif">璞玉</div>
+                            </div>
+                            <div class="bg-white/10 p-4">
+                                <div class="text-3xl font-bold text-accent-gold mb-2">🟡</div>
+                                <div class="text-xs uppercase tracking-widest mb-1">Amber</div>
+                                <div class="text-[10px] text-gray-400 chinese-serif">琥珀</div>
+                            </div>
+                            <div class="bg-white/10 p-4">
+                                <div class="text-3xl font-bold text-accent-gold mb-2">🦴</div>
+                                <div class="text-xs uppercase tracking-widest mb-1">Fossil</div>
+                                <div class="text-[10px] text-gray-400 chinese-serif">化石</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Call for Papers -->
+                <section class="mb-12 p-8 bg-accent-gold/10 border-2 border-accent-gold">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-charcoal mb-2">
+                                Call for Papers / 征稿启事
+                            </h3>
+                            <p class="text-charcoal-light">
+                                Volume 2, Issue 1: "The Future of Useless Knowledge"
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold text-accent-gold">∞</div>
+                            <div class="text-[10px] uppercase tracking-widest text-gray-500">Submissions Open</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Research Articles -->
+                <section class="mb-2 sm:mb-16">
+                    <div class="border-b-2 border-charcoal pb-1 mb-6">
+                        <h3 class="text-xl font-bold uppercase tracking-[0.1em]">Research Articles / 研究论文</h3>
+                    </div>
+                    <div class="divide-y divide-gray-100">
+                        <!-- Article 1 -->
+                        <a href="#preprints" class="block group pt-8 pb-8 border-b border-gray-100 last:border-0">
+                            <div class="flex gap-4 sm:gap-8 items-start">
+                                <div class="flex-1">
+                                    <span class="inline-block px-2 py-1 border border-accent-gold text-accent-gold text-[9px] font-bold uppercase tracking-widest mb-3">
+                                        Original Research / 原创研究
+                                    </span>
+                                    <h4 class="text-2xl sm:text-3xl font-serif font-bold text-charcoal mb-1 group-hover:text-accent-gold transition-colors cursor-pointer leading-tight">
+                                        Quantifying the Brownian Motion of Academic Bullshit in Peer Review Systems
+                                    </h4>
+                                    <h5 class="text-xl chinese-serif text-gray-400 mb-4">同行评审系统中学术废话的布朗运动定量研究</h5>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                        We present a novel framework for measuring the diffusion coefficient of meaningless citations across prestigious journals, revealing that approximately 73% of citations serve no functional purpose beyond padding bibliographies.
+                                    </p>
+                                    <div class="flex flex-wrap items-center text-[10px] font-bold text-gray-400 gap-3 uppercase tracking-wider">
+                                        <span class="text-charcoal">Dr. F.eces C.oliform, Prof. P.arasite P.roteus</span>
+                                        <span>•</span>
+                                        <span>DOI: 10.MeetU/2026.001</span>
+                                    </div>
+                                </div>
+                                <div class="w-48 h-32 hidden lg:block overflow-hidden border border-gray-100 mt-9">
+                                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop" alt="Abstract" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Article 2 -->
+                        <a href="#preprints" class="block group pt-8 pb-8 border-b border-gray-100 last:border-0">
+                            <div class="flex gap-4 sm:gap-8 items-start">
+                                <div class="flex-1">
+                                    <span class="inline-block px-2 py-1 border border-gray-400 text-gray-500 text-[9px] font-bold uppercase tracking-widest mb-3">
+                                        Review / 综述
+                                    </span>
+                                    <h4 class="text-2xl sm:text-3xl font-serif font-bold text-charcoal mb-1 group-hover:text-accent-gold transition-colors cursor-pointer leading-tight">
+                                        The Scent Marking Hypothesis: Why Academics Claim Territory Through Jargon
+                                    </h4>
+                                    <h5 class="text-xl chinese-serif text-gray-400 mb-4">气味标记假说：为什么学者通过术语划定领地</h5>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                        This systematic review examines 847 papers across 12 disciplines to demonstrate that complex terminology serves primarily as a mechanism for territorial display rather than communicative precision.
+                                    </p>
+                                    <div class="flex flex-wrap items-center text-[10px] font-bold text-gray-400 gap-3 uppercase tracking-wider">
+                                        <span class="text-charcoal">Prof. M.iasma T.heory, Dr. S.tagnation V.olumes</span>
+                                        <span>•</span>
+                                        <span>DOI: 10.MeetU/2026.002</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Article 3 -->
+                        <a href="#preprints" class="block group pt-8 pb-8 border-b border-gray-100 last:border-0">
+                            <div class="flex gap-4 sm:gap-8 items-start">
+                                <div class="flex-1">
+                                    <span class="inline-block px-2 py-1 border border-accent-gold text-accent-gold text-[9px] font-bold uppercase tracking-widest mb-3">
+                                        Original Research / 原创研究
+                                    </span>
+                                    <h4 class="text-2xl sm:text-3xl font-serif font-bold text-charcoal mb-1 group-hover:text-accent-gold transition-colors cursor-pointer leading-tight">
+                                        Deep Learning for Automatic Detection of Self-Citations: A Turd-Based Approach
+                                    </h4>
+                                    <h5 class="text-xl chinese-serif text-gray-400 mb-4">基于粪便方法的自我引用自动检测深度学习研究</h5>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                        We trained a convolutional neural network on 50,000 annotated "poo" emojis in academic tweets to create a highly accurate self-citation detection system with 94.7% precision.
+                                    </p>
+                                    <div class="flex flex-wrap items-center text-[10px] font-bold text-gray-400 gap-3 uppercase tracking-wider">
+                                        <span class="text-charcoal">Dr. S.ewage D.ata, M.Sc. C.ontamination C.ohen</span>
+                                        <span>•</span>
+                                        <span>DOI: 10.MeetU/2026.003</span>
+                                    </div>
+                                </div>
+                                <div class="w-48 h-32 hidden lg:block overflow-hidden border border-gray-100 mt-9">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Abstract" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Article 4 -->
+                        <a href="#preprints" class="block group pt-8 pb-8 border-b border-gray-100 last:border-0">
+                            <div class="flex gap-4 sm:gap-8 items-start">
+                                <div class="flex-1">
+                                    <span class="inline-block px-2 py-1 border border-accent-gold text-accent-gold text-[9px] font-bold uppercase tracking-widest mb-3">
+                                        Original Research / 原创研究
+                                    </span>
+                                    <h4 class="text-2xl sm:text-3xl font-serif font-bold text-charcoal mb-1 group-hover:text-accent-gold transition-colors cursor-pointer leading-tight">
+                                        When Is a Literature Review Not a Literature Review? A Taxonomic Analysis
+                                    </h4>
+                                    <h5 class="text-xl chinese-serif text-gray-400 mb-4">文献综述何时不是文献综述？一项分类学分析</h5>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                        Through careful analysis of 2,000 "reviews" published between 2020-2025, we identify 17 distinct categories of literature review malpractice, including the dangerous "citationsplaining" phenomenon.
+                                    </p>
+                                    <div class="flex flex-wrap items-center text-[10px] font-bold text-gray-400 gap-3 uppercase tracking-wider">
+                                        <span class="text-charcoal">Dr. R.euse P.aper, Prof. P.lagiarism M.astery</span>
+                                        <span>•</span>
+                                        <span>DOI: 10.MeetU/2026.004</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="mt-6 sm:mt-12 text-center border-t border-gray-100 pt-4 sm:pt-8">
+                        <a href="#preprints" class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-accent-gold hover:text-charcoal transition-all">
+                            View All Research / 查看所有研究
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-4">
+                <div class="space-y-8">
+                    <!-- About -->
+                    <div class="bg-white p-6 border border-gray-200">
+                        <h4 class="text-lg font-bold uppercase tracking-widest text-charcoal border-b-2 border-charcoal pb-2 mb-4">
+                            About MeetU
+                        </h4>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-4 chinese-serif">
+                            MeetU Journal 致力于高阶内在糟粕研究。这是一个严肃的学术实验，探索学术评价的边界。
+                        </p>
+                        <a href="#news" class="text-[11px] font-bold uppercase tracking-widest text-accent-gold hover:text-charcoal">
+                            Learn More →
+                        </a>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="bg-white p-6 border border-gray-200">
+                        <h4 class="text-lg font-bold uppercase tracking-widest text-charcoal border-b-2 border-charcoal pb-2 mb-4">
+                            Statistics / 统计
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] uppercase tracking-widest text-gray-500">Published</span>
+                                <span class="font-bold text-charcoal">47</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] uppercase tracking-widest text-gray-500">Reviewing</span>
+                                <span class="font-bold text-charcoal">128</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] uppercase tracking-widest text-gray-500">Contributors</span>
+                                <span class="font-bold text-charcoal">2,341</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] uppercase tracking-widest text-gray-500">Citations</span>
+                                <span class="font-bold text-charcoal">∞</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Join Community -->
+                    <div class="bg-charcoal text-white p-6">
+                        <h4 class="text-lg font-bold uppercase tracking-widest border-b border-gray-700 pb-2 mb-4">
+                            Join the Community
+                        </h4>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                            成为发酵师，参与学术评审，共同构建智慧沉积层。
+                        </p>
+                        <a href="#" class="block w-full py-3 text-center bg-accent-gold text-charcoal text-[11px] font-bold uppercase tracking-widest hover:bg-yellow-500 transition-colors">
+                            Register Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-16 pb-12 px-6 lg:px-20 mt-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+                <div class="lg:col-span-5">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center">
+                            <span class="text-black font-bold text-lg">知音</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold italic tracking-wider">MeetU PORTAL</h2>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 mt-1 font-bold">
+                                Sciences, Humanities, Information, Technology / 化石（学术的永恒印记）
+                            </p>
+                        </div>
+                    </div>
+                    <p class="font-serif text-gray-400 text-sm leading-relaxed max-w-md">
+                        The Official Academic Portal for the Studies of High Inner Trash. Dedicated to the rigorous peer review of academic waste since 2026.
+                        <br><br>
+                        致力于高阶内在糟粕研究的官方学术门户。自2026年起专注于学术废料的严谨同行评审。 参考同源期刊：S.H.I.T Journal
+                    </p>
+                </div>
+
+                <div class="lg:col-span-1"></div>
+
+                <div class="lg:col-span-3">
+                    <h5 class="text-[11px] font-bold uppercase tracking-widest text-white mb-6 border-b border-gray-800 pb-2">Guidelines / 指南</h5>
+                    <ul class="space-y-4 font-serif text-gray-400 text-sm">
+                        <li><a class="hover:text-white transition-colors" href="#">Submission Ethics / 投稿伦理</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Brewing Review / 酿造评审</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Open Aging / 公开陈酿</a></li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h5 class="text-[11px] font-bold uppercase tracking-widest text-white mb-6 border-b border-gray-800 pb-2">Contact / 联系</h5>
+                    <ul class="space-y-4 font-serif text-gray-400 text-sm">
+                        <li><a class="hover:text-white transition-colors" href="#">Editorial Office / 编辑部</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Media Inquiries / 媒体垂询</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Sponsorship / 赞助合作</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                <p>© 2026 MeetU JOURNAL ACADEMIC. ALL RIGHTS WASTED. 灵感来源于S.H.I.T Journal / 版权所有：没有版权</p>
+                <div class="flex gap-8 mt-4 md:mt-0">
+                    <a class="hover:text-white transition-colors" href="#">Privacy / 隐私</a>
+                    <a class="hover:text-white transition-colors" href="#">Terms / 条款</a>
+                    <span>DOI: 10.MeetU/ROOT</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/50 hidden" onclick="closeMenu()">
+        <div class="absolute right-0 top-0 h-full w-72 bg-white shadow-xl animate-slideIn" onclick="event.stopPropagation()">
+            <div class="p-4 flex justify-between items-center border-b border-gray-200">
+                <span class="text-lg font-bold uppercase tracking-widest">Menu</span>
+                <button onclick="closeMenu()" class="material-symbols-outlined text-charcoal cursor-pointer">close</button>
+            </div>
+            <nav class="p-4">
+                <a href="#" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Home / 主页</a>
+                <a href="#news" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">News / 新闻</a>
+                <a href="#preprints" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Aging / 陈酿区</a>
+                <a href="#submit" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Lay / 下蛋</a>
+                <a href="#" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Dashboard / 仪表台</a>
+                <a href="#" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Fermentor / 发酵师</a>
+                <a href="#" class="block py-3 border-b border-gray-100 text-[12px] font-bold uppercase tracking-wider text-charcoal-light hover:text-science-red transition-colors">Journals / 子刊</a>
+                <a href="#" class="block mt-6 py-3 px-4 bg-charcoal text-white text-center text-[11px] font-bold uppercase tracking-widest rounded-sm">
+                    Log In / 登录
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        function closeMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
